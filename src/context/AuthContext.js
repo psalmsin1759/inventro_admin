@@ -5,7 +5,9 @@ import { createContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 // ** Axios
-import axios from 'axios'
+import axios from '../api/axios'
+
+import qs from 'qs'
 
 // ** Config
 import authConfig from 'src/configs/auth'
@@ -62,29 +64,44 @@ const AuthProvider = ({ children }) => {
     initAuth()
   }, [])
 
-  const handleLogin = (params, errorCallback) => {
-    axios
-      .post(authConfig.loginEndpoint, params)
-      .then(async res => {
-        window.localStorage.setItem(authConfig.storageTokenKeyName, res.data.accessToken)
+  const handleLogin = async (params, errorCallback) => {
+    const data = {
+      email: params.email,
+      password: params.password
+    }
+
+    const LOGIN_URL = '/login'
+
+    const response = await axios
+      .post(LOGIN_URL, qs.stringify(data), {
+        Headers: { 'content-type': 'application/x-www-form-urlencoded' }
       })
-      .then(() => {
-        axios
-          .get(authConfig.meEndpoint, {
-            headers: {
-              Authorization: window.localStorage.getItem(authConfig.storageTokenKeyName)
-            }
-          })
-          .then(async response => {
-            const returnUrl = router.query.returnUrl
-            setUser({ ...response.data.userData })
-            await window.localStorage.setItem('userData', JSON.stringify(response.data.userData))
-            const redirectURL = returnUrl && returnUrl !== '/' ? returnUrl : '/'
-            router.replace(redirectURL)
-          })
+      .then(response => {
+        console.log(response.data)
+
+        if (response?.data.success) {
+          window.localStorage.setItem(authConfig.storageTokenKeyName, response?.data.accessToken)
+          const returnUrl = router.query.returnUrl
+          setUser({ ...response?.data.data })
+          window.localStorage.setItem('userData', JSON.stringify(response?.data.data))
+          window.localStorage.setItem('token', JSON.stringify(response?.data.token))
+          const redirectURL = returnUrl && returnUrl !== '/' ? returnUrl : '/'
+          router.replace(redirectURL)
+        } else {
+          const message = JSON.stringify(response?.data.message)
+          alert(message)
+        }
       })
-      .catch(err => {
-        if (errorCallback) errorCallback(err)
+      .catch(error => {
+        // Handle error
+        if (error.response) {
+          //const errorCode = error.response.status
+          //alert(`Error: ${errorCode}`)
+          const message = JSON.stringify(error.response.data.message)
+          alert(message)
+
+          console.log(error.response.data)
+        }
       })
   }
 

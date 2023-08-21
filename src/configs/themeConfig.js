@@ -9,9 +9,9 @@ import Circle from 'mdi-material-ui/Circle'
 
 const themeConfig = {
   // ** Layout Configs
-  templateName: 'Materialize' /* App Name */,
+  templateName: 'Inventro' /* App Name */,
   layout: 'vertical' /* vertical | horizontal */,
-  mode: 'light' /* light | dark */,
+  mode: 'dark' /* light | dark */,
   direction: 'ltr' /* ltr | rtl */,
   skin: 'default' /* default | bordered | semi-dark /*! Note: semi-dark value will only work for Vertical Layout */,
   contentWidth: 'boxed' /* full | boxed */,
