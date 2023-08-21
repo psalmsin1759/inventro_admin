@@ -1,0 +1,12 @@
+version: '1'
+services:
+  web:
+    image: node:14-alpine
+    ports:
+      - '80:80'
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=development
+    command: npm start
