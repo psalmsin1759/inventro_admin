@@ -5,7 +5,9 @@ import { createContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 // ** Axios
-import axios from '../api/axios'
+//import axios from '../api/axios'
+
+import axios from 'axios'
 
 import qs from 'qs'
 
@@ -64,6 +66,33 @@ const AuthProvider = ({ children }) => {
     initAuth()
   }, [])
 
+  const handleLogin = (params, errorCallback) => {
+    axios
+      .post(authConfig.loginEndpoint, params)
+      .then(async res => {
+        window.localStorage.setItem(authConfig.storageTokenKeyName, res.data.accessToken)
+      })
+      .then(() => {
+        axios
+          .get(authConfig.meEndpoint, {
+            headers: {
+              Authorization: window.localStorage.getItem(authConfig.storageTokenKeyName)
+            }
+          })
+          .then(async response => {
+            const returnUrl = router.query.returnUrl
+            setUser({ ...response.data.userData })
+            await window.localStorage.setItem('userData', JSON.stringify(response.data.userData))
+            const redirectURL = returnUrl && returnUrl !== '/' ? returnUrl : '/'
+            router.replace(redirectURL)
+          })
+      })
+      .catch(err => {
+        if (errorCallback) errorCallback(err)
+      })
+  }
+
+  /*
   const handleLogin = async (params, errorCallback) => {
     const data = {
       email: params.email,
@@ -103,7 +132,7 @@ const AuthProvider = ({ children }) => {
           console.log(error.response.data)
         }
       })
-  }
+  }*/
 
   const handleLogout = () => {
     setUser(null)

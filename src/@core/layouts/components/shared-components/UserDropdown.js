@@ -130,40 +130,12 @@ const UserDropdown = props => {
         <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/apps/user/view/12')}>
           <Box sx={styles}>
             <AccountOutline sx={{ mr: 2 }} />
-            Profile
+            Change password
           </Box>
         </MenuItem>
-        <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/apps/email')}>
-          <Box sx={styles}>
-            <EmailOutline sx={{ mr: 2 }} />
-            Inbox
-          </Box>
-        </MenuItem>
-        <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/apps/chat')}>
-          <Box sx={styles}>
-            <MessageOutline sx={{ mr: 2 }} />
-            Chat
-          </Box>
-        </MenuItem>
+
         <Divider />
-        <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/pages/account-settings')}>
-          <Box sx={styles}>
-            <CogOutline sx={{ mr: 2 }} />
-            Settings
-          </Box>
-        </MenuItem>
-        <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/pages/pricing')}>
-          <Box sx={styles}>
-            <CurrencyUsd sx={{ mr: 2 }} />
-            Pricing
-          </Box>
-        </MenuItem>
-        <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/pages/faq')}>
-          <Box sx={styles}>
-            <HelpCircleOutline sx={{ mr: 2 }} />
-            FAQ
-          </Box>
-        </MenuItem>
+
         <Divider />
         <MenuItem sx={{ py: 2 }} onClick={handleLogout}>
           <LogoutVariant sx={{ mr: 2, fontSize: '1.375rem', color: 'text.secondary' }} />
