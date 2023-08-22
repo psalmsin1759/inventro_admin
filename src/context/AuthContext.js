@@ -66,6 +66,7 @@ const AuthProvider = ({ children }) => {
     initAuth()
   }, [])
 
+  /*
   const handleLogin = (params, errorCallback) => {
     axios
       .post(authConfig.loginEndpoint, params)
@@ -90,9 +91,8 @@ const AuthProvider = ({ children }) => {
       .catch(err => {
         if (errorCallback) errorCallback(err)
       })
-  }
+  }*/
 
-  /*
   const handleLogin = async (params, errorCallback) => {
     const data = {
       email: params.email,
@@ -132,7 +132,7 @@ const AuthProvider = ({ children }) => {
           console.log(error.response.data)
         }
       })
-  }*/
+  }
 
   const handleLogout = () => {
     setUser(null)
