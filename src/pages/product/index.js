@@ -47,6 +47,7 @@ const ProductBulk = () => {
   }, [])
 
   const URL = '/getstores'
+
   const loadGames = async () => {
     const response = await axios.get(URL, {
       Headers: { 'content-type': "'application/json" }
@@ -68,7 +69,9 @@ const ProductBulk = () => {
 
     if (!file) {
       setError('Please select a file to upload.')
+
       setButtonLoading(false)
+
       return
     }
 
@@ -151,7 +154,9 @@ const ProductBulk = () => {
                   labelId='form-layouts-separator-select-label'
                 >
                   {stores?.map(store => (
-                    <MenuItem value={store.id}>{store.name}</MenuItem>
+                    <MenuItem key={store.id} value={store.id}>
+                      {store.name}
+                    </MenuItem>
                   ))}
                 </Select>
               </FormControl>

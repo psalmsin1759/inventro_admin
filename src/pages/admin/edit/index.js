@@ -8,13 +8,9 @@ import CardContent from '@mui/material/CardContent'
 import Grid from '@mui/material/Grid'
 import CardActions from '@mui/material/CardActions'
 import FormControl from '@mui/material/FormControl'
-import FormHelperText from '@mui/material/FormHelperText'
 import { styled } from '@mui/material/styles'
 import TextField from '@mui/material/TextField'
-import InputLabel from '@mui/material/InputLabel'
-import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
-import FormControl from '@mui/material/FormControl'
 import FormHelperText from '@mui/material/FormHelperText'
 import IconButton from '@mui/material/IconButton'
 import Collapse from '@mui/material/Collapse'
@@ -28,7 +24,6 @@ import LoadingButton from '@mui/lab/LoadingButton'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, Controller } from 'react-hook-form'
-import moment from 'moment'
 
 const schema = yup.object().shape({
   email: yup
@@ -104,7 +99,7 @@ const StaffEdit = ({ id }) => {
 
     const URL = '/admins/' + id
 
-    const response = await axios.put(URL, formData, {
+    const response = await axios.put(URL, qs.stringify(input), {
       Headers: { 'content-type': 'application/x-www-form-urlencoded' }
     })
 
