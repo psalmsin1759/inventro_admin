@@ -5,9 +5,9 @@ import { createContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 // ** Axios
-//import axios from '../api/axios'
+import axios from '../api/axios'
 
-import axios from 'axios'
+//import axios from 'axios'
 
 import qs from 'qs'
 
