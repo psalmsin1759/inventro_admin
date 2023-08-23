@@ -52,12 +52,10 @@ const ProductBulk = () => {
   const loadGames = async () => {
     const accessToken = JSON.parse(window.localStorage.getItem('accessToken'))
 
-    const response = await axios.get(URL, {
-      Headers: {
-        Authorization: `Bearer ${accessToken}`,
-        'Content-Type': 'application/json'
-      }
-    })
+    axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`
+    axios.defaults.headers.post['Content-Type'] = 'application/json'
+
+    const response = await axios.get(URL)
     setStores(response?.data.data)
   }
 
