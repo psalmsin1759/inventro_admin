@@ -155,6 +155,7 @@ const ChangePassword = () => {
                     <TextField
                       value={value}
                       label='Password'
+                      type='password'
                       onChange={onChange}
                       fullWidth
                       placeholder='Password'
@@ -178,6 +179,7 @@ const ChangePassword = () => {
                     <TextField
                       value={value}
                       label='Confirm Password'
+                      type='password'
                       onChange={onChange}
                       fullWidth
                       placeholder='Confirm Password'
