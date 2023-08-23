@@ -116,6 +116,8 @@ const NewsletterPage = () => {
       subject: data.subject,
       body: message
     }
+    print(data.subject)
+    print(message)
     const URL = '/sendEmailToAll'
 
     const accessToken = JSON.parse(window.localStorage.getItem('accessToken'))

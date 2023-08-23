@@ -61,12 +61,6 @@ const schema = yup.object().shape({
     .required()
 })
 
-const defaultValues = {
-  email: '',
-  name: '',
-  phone: ''
-}
-
 const AddStaffDrawer = props => {
   const auth = useAuth()
   const user = auth.user
@@ -109,6 +103,8 @@ const AddStaffDrawer = props => {
       email: data.email,
       phone: data.phone
     }
+
+    print(data.name + ' ' + data.email)
 
     const URL = '/admins'
 
@@ -195,6 +191,7 @@ const AddStaffDrawer = props => {
                 <TextField
                   value={value}
                   label='Email'
+                  type='email'
                   onChange={onChange}
                   placeholder='Email'
                   error={Boolean(errors.email)}
