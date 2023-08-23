@@ -9,6 +9,8 @@ import ChartjsLineChart from 'src/views/dashboard/ChartjsLineChart'
 import { useTheme } from '@mui/material/styles'
 import { useState, useEffect } from 'react'
 
+import axios from '../../api/axios'
+
 const Home = () => {
   // ** Hook
   const theme = useTheme()
