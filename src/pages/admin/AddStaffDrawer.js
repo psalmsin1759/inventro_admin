@@ -116,7 +116,7 @@ const AddStaffDrawer = props => {
     print(accessToken)
 
     axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`
-    axios.defaults.headers.post['Content-Type'] = 'application/json'
+    axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 
     const response = await axios.post(URL, qs.stringify(input))
 
