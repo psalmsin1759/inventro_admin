@@ -46,6 +46,12 @@ const Header = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.background.default
 }))
 
+const defaultValues = {
+  email: '',
+  name: '',
+  phone: ''
+}
+
 const schema = yup.object().shape({
   email: yup
     .string()
@@ -68,8 +74,6 @@ const AddStaffDrawer = props => {
 
   // ** Props
   const { open, toggle, reloadTable } = props
-
-  const [astatus, setStatus] = useState('1')
 
   const [buttonLoading, setButtonLoading] = useState(false)
 

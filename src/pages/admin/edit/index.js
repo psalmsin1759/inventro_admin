@@ -40,6 +40,12 @@ const schema = yup.object().shape({
     .required()
 })
 
+const defaultValues = {
+  email: '',
+  name: '',
+  phone: ''
+}
+
 // ** Icons Imports
 import Close from 'mdi-material-ui/Close'
 
