@@ -87,8 +87,10 @@ const ProductBulk = () => {
 
     const URL = '/uploadProducts'
 
+    const accessToken = JSON.parse(window.localStorage.getItem('accessToken'))
+
     const response = await axios.post(URL, formData, {
-      Headers: { 'content-type': 'multipart/form-data' }
+      Headers: { Authorization: `Bearer ${accessToken}`, 'content-type': 'multipart/form-data' }
     })
 
     if (response?.data.success) {

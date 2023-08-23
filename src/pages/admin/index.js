@@ -31,6 +31,8 @@ const StaffListPage = () => {
   const user = auth.user
   const churchID = user.church_id
 
+  const accessToken = JSON.parse(window.localStorage.getItem('accessToken'))
+
   const [addUserOpen, setAddUserOpen] = useState(false)
 
   const toggleAddUserDrawer = () => setAddUserOpen(!addUserOpen)
@@ -49,7 +51,7 @@ const StaffListPage = () => {
 
   const loadTransaction = async () => {
     const response = await axios.get(URL, {
-      Headers: { 'content-type': "'application/json" }
+      Headers: { Authorization: `Bearer ${accessToken}`, 'content-type': "'application/json" }
     })
 
     console.log(response?.data.data)
@@ -69,7 +71,7 @@ const StaffListPage = () => {
     const URL = '/admins/' + selectedRow
 
     const response = await axios.delete(URL, {
-      Headers: { 'content-type': 'application/x-www-form-urlencoded' }
+      Headers: { Authorization: `Bearer ${accessToken}`, 'content-type': 'application/x-www-form-urlencoded' }
     })
 
     //setData(null)

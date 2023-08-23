@@ -52,6 +52,8 @@ const Header = styled(Box)(({ theme }) => ({
 }))
 
 const StaffEdit = ({ id }) => {
+  const accessToken = JSON.parse(window.localStorage.getItem('accessToken'))
+
   useEffect(() => {
     loadData()
   }, [])
@@ -60,7 +62,7 @@ const StaffEdit = ({ id }) => {
     const URL = 'admins/' + id
 
     const response = await axios.get(URL, {
-      Headers: { 'content-type': "'application/json" }
+      Headers: { Authorization: `Bearer ${accessToken}`, 'content-type': "'application/json" }
     })
 
     reset({
@@ -100,7 +102,7 @@ const StaffEdit = ({ id }) => {
     const URL = '/admins/' + id
 
     const response = await axios.put(URL, qs.stringify(input), {
-      Headers: { 'content-type': 'application/x-www-form-urlencoded' }
+      Headers: { Authorization: `Bearer ${accessToken}`, 'content-type': 'application/x-www-form-urlencoded' }
     })
 
     console.log(response)
