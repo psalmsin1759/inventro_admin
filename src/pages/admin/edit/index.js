@@ -107,9 +107,10 @@ const StaffEdit = ({ id }) => {
 
     const URL = '/admins/' + id
 
-    const response = await axios.put(URL, qs.stringify(input), {
-      Headers: { Authorization: `Bearer ${accessToken}`, 'content-type': 'application/x-www-form-urlencoded' }
-    })
+    axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`
+    axios.defaults.headers.post['Content-Type'] = 'application/json'
+
+    const response = await axios.put(URL, qs.stringify(input))
 
     console.log(response)
 

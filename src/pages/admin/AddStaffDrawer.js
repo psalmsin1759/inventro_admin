@@ -113,10 +113,12 @@ const AddStaffDrawer = props => {
     const URL = '/admins'
 
     const accessToken = JSON.parse(window.localStorage.getItem('accessToken'))
+    print(accessToken)
 
-    const response = await axios.post(URL, qs.stringify(input), {
-      Headers: { Authorization: `Bearer ${accessToken}`, 'content-type': 'application/x-www-form-urlencoded' }
-    })
+    axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`
+    axios.defaults.headers.post['Content-Type'] = 'application/json'
+
+    const response = await axios.post(URL, qs.stringify(input))
 
     if (response?.data.success) {
       setSeverity('success')
