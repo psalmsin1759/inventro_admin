@@ -19,6 +19,7 @@ import Button from '@mui/material/Button'
 import { useState, useEffect } from 'react'
 
 import { useAuth } from 'src/hooks/useAuth'
+import axios from '../../api/axios'
 
 // ** Hook
 import { useSettings } from 'src/@core/hooks/useSettings'
@@ -49,8 +50,13 @@ const ProductBulk = () => {
   const URL = '/getstores'
 
   const loadGames = async () => {
+    const accessToken = JSON.parse(window.localStorage.getItem('accessToken'))
+
     const response = await axios.get(URL, {
-      Headers: { 'content-type': "'application/json" }
+      Headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      }
     })
     setStores(response?.data.data)
   }
