@@ -36,7 +36,6 @@ const Home = () => {
       axios.defaults.headers.post['Content-Type'] = 'application/json'
 
       const response = await axios.get(URLGRAPH)
-      //{ ...response?.data.data }
       seStoreCount(response.data.storeCount)
       seOrderCount(response.data.orderCount)
       setStoreCountLastSeven(response.data.storeCount7Days)

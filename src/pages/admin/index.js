@@ -46,18 +46,18 @@ const StaffListPage = () => {
   const URL = '/admins'
 
   useEffect(() => {
+    const loadTransaction = async () => {
+      const response = await axios.get(URL, {
+        Headers: { Authorization: `Bearer ${accessToken}`, 'content-type': "'application/json" }
+      })
+
+      console.log(response?.data.data)
+
+      setData(response?.data.data)
+    }
+
     loadTransaction()
   }, [])
-
-  const loadTransaction = async () => {
-    const response = await axios.get(URL, {
-      Headers: { Authorization: `Bearer ${accessToken}`, 'content-type': "'application/json" }
-    })
-
-    console.log(response?.data.data)
-
-    setData(response?.data.data)
-  }
 
   const [selectedRow, setSelectedRow] = useState(0)
 

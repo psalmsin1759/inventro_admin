@@ -61,22 +61,22 @@ const StaffEdit = ({ id }) => {
   const accessToken = JSON.parse(window.localStorage.getItem('accessToken'))
 
   useEffect(() => {
+    const loadData = async () => {
+      const URL = 'admins/' + id
+
+      const response = await axios.get(URL, {
+        Headers: { Authorization: `Bearer ${accessToken}`, 'content-type': "'application/json" }
+      })
+
+      reset({
+        name: response?.data.data.name,
+        phone: response?.data.data.phone,
+        email: response?.data.data.email
+      })
+    }
+
     loadData()
   }, [])
-
-  const loadData = async () => {
-    const URL = 'admins/' + id
-
-    const response = await axios.get(URL, {
-      Headers: { Authorization: `Bearer ${accessToken}`, 'content-type': "'application/json" }
-    })
-
-    reset({
-      name: response?.data.data.name,
-      phone: response?.data.data.phone,
-      email: response?.data.data.email
-    })
-  }
 
   const [buttonLoading, setButtonLoading] = useState(false)
 
