@@ -4,6 +4,8 @@ import EmailOutline from 'mdi-material-ui/EmailOutline'
 import UploadOutline from 'mdi-material-ui/UploadOutline'
 import AlertCircleOutline from 'mdi-material-ui/AlertCircleOutline'
 import AccountGroupOutline from 'mdi-material-ui/AccountGroupOutline'
+import AccountOutline from 'mdi-material-ui/AccountOutline'
+import StoreOutline from 'mdi-material-ui/StoreOutline'
 
 const navigation = () => {
   return [
@@ -28,7 +30,17 @@ const navigation = () => {
       path: '/newsletter'
     },
     {
-      title: 'Admin',
+      title: 'Customers',
+      icon: AccountOutline,
+      path: '/customers'
+    },
+    {
+      title: 'Stores',
+      icon: StoreOutline,
+      path: '/stores'
+    },
+    {
+      title: 'Admins',
       icon: AccountGroupOutline,
       path: '/admin'
     }

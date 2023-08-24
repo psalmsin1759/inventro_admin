@@ -24,7 +24,7 @@ const ChartjsLineChart = props => {
 
   const [graphData, setGraphData] = useState({})
 
-  const accessToken = JSON.parse(window.localStorage.getItem('accessToken'))
+  // const accessToken = JSON.parse(window.localStorage.getItem('accessToken'))
 
   const URLGRAPH = '/getsummary'
 

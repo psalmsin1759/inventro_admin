@@ -24,7 +24,7 @@ const Home = () => {
   const borderColor = theme.palette.action.focus
   const gridLineColor = theme.palette.action.focus
 
-  const accessToken = JSON.parse(window.localStorage.getItem('accessToken'))
+  //const accessToken = JSON.parse(window.localStorage.getItem('accessToken'))
 
   const [storeCount, seStoreCount] = useState(0)
   const [orderCount, seOrderCount] = useState(0)
